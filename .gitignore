@@ -1,0 +1,7 @@
+node_modules
+
+nik_id_rsa 
+nik_id_rsa.pub
+
+.env
+build/

@@ -1,0 +1,17 @@
+.menu-box-transition-enter {
+    opacity: 0;
+}
+
+.menu-box-transition-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in-out;
+}
+
+.menu-box-transition-exit {
+    opacity: 1;
+}
+
+.menu-box-transition-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
