@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 const HeaderBox = (props) => {
   const { classes } = useStyles();
 
-  const { breakpoints } = useTheme();
+  const { breakpoints, palette } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down(1250));
   const isMobileImage = useMediaQuery(breakpoints.down(465));
 
@@ -88,7 +88,7 @@ const HeaderBox = (props) => {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          bgcolor: "#6200EE",
+          bgcolor: palette.primary.main,
           height: "56px",
           display: "flex",
           justifyContent: "space-between",
@@ -104,17 +104,17 @@ const HeaderBox = (props) => {
           <Box sx={{ pt: "10px", pl: "19px" }}>
             <Tooltip title="Меню">
               <IconButton onClick={isMobile ? onShowMobileMenu : tooglePanel}>
-                <DehazeIcon sx={{ color: "#FFFFFF" }} />
+                <DehazeIcon sx={{ color: palette.secondary.main }} />
               </IconButton>
             </Tooltip>
           </Box>
           <Box>
             <Typography
-              sx={{ color: "#FFFFFF" }}
+              sx={{ color: palette.secondary.main }}
               style={{ display: isMobileImage ? "none" : "block" }}
               onClick={() => navigate("/areas")}
             >
-              Участки
+              Помещения
             </Typography>
           </Box>
         </Stack>
@@ -136,10 +136,10 @@ const HeaderBox = (props) => {
                 variant="standard"
                 sx={{
                   ".css-c63i49-MuiInputBase-input-MuiInput-input": {
-                    color: "#FFFFFF",
+                    color: palette.secondary.main,
                   },
                   ".css-io5dvg-MuiFormLabel-root-MuiInputLabel-root": {
-                    color: "#FFFFFF",
+                    color: palette.secondary.main,
                   },
                 }}
                 inputRef={myRef}
@@ -156,7 +156,7 @@ const HeaderBox = (props) => {
               <IconButton>
                 <SearchIcon
                   onClick={toogleShowSerchPanel}
-                  sx={{ color: "rgba(255, 255, 255, 0.74)" }}
+                  sx={{ color: palette.secondary.main }}
                 />
               </IconButton>
             </Tooltip>
@@ -165,7 +165,7 @@ const HeaderBox = (props) => {
             <Tooltip title="Выйти">
               <IconButton onClick={onLogOut}>
                 <LogoutIcon
-                  sx={{ color: "rgba(255, 255, 255, 0.74)", mr: "11px" }}
+                  sx={{ color: palette.secondary.main, mr: "11px" }}
                 />
               </IconButton>
             </Tooltip>

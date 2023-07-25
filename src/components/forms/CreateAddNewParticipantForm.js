@@ -10,7 +10,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { deepPurple, orange } from "@mui/material/colors";
 import { useStyles } from "../../style/useStyle";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRef, useEffect, useContext, useState } from "react";
@@ -23,7 +22,7 @@ const CreateAddNewParticipantForm = ({
   onOpenModalWindow,
   onCloseModalWindow,
 }) => {
-  const { breakpoints } = useTheme();
+  const { breakpoints, palette } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down(1450));
   const isMobile1 = useMediaQuery(breakpoints.down(1200));
 
@@ -69,7 +68,7 @@ const CreateAddNewParticipantForm = ({
     const phoneNumberRegex = /^\d{10}$/;
 
     if (!fullName) {
-      enqueueSnackbar("Укажите фамилию и имя возвещателя!", {
+      enqueueSnackbar("Укажите фамилию и имя арендатора!", {
         variant: "warning",
       });
       return;
@@ -77,7 +76,7 @@ const CreateAddNewParticipantForm = ({
 
     if (checkFullName) {
       enqueueSnackbar(
-        "Возвещатель с таким именем и фамилией уже есть в системе!",
+        "Арендатор с таким именем и фамилией уже есть в системе!",
         { variant: "error" }
       );
       return;
@@ -114,16 +113,16 @@ const CreateAddNewParticipantForm = ({
         }
       );
       if (response.status === 200) {
-        enqueueSnackbar(`Возвещатель ${fullName} добавлен успешно!`, {
+        enqueueSnackbar(`Арендатор ${fullName} добавлен успешно!`, {
           variant: "success",
         });
       } else {
-        enqueueSnackbar("Произошла ошибка при добавлении возвещателя", {
+        enqueueSnackbar("Произошла ошибка при добавлении арендатора!", {
           variant: "error",
         });
       }
     } catch (e) {
-      enqueueSnackbar("Произошла ошибка при добавлении возвещателя", {
+      enqueueSnackbar("Произошла ошибка при добавлении арендатора!", {
         variant: "error",
       });
     }
@@ -143,7 +142,7 @@ const CreateAddNewParticipantForm = ({
         <Box>
           <Stack direction="row" justifyContent="space-between">
             <Typography variant="h3" className={classes.h1AddPub}>
-              Добавить возвещателя
+              Добавить арендатора
             </Typography>
             <IconButton
               className={classes.closeIconAddPub}
@@ -165,16 +164,16 @@ const CreateAddNewParticipantForm = ({
                 label="Имя"
                 variant="outlined"
                 fullWidth
-                helperText="Укажите фамилию и имя возвещателя"
+                helperText="Укажите фамилию и имя арендатора"
                 sx={{
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
-                color="primary"
                 inputRef={myRef}
+                color="secondary"
               ></TextField>
 
               <TextField
@@ -189,9 +188,10 @@ const CreateAddNewParticipantForm = ({
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
+                color="secondary"
               ></TextField>
             </Stack>
             <Stack
@@ -211,9 +211,10 @@ const CreateAddNewParticipantForm = ({
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
+                color="secondary"
               ></TextField>
             </Stack>
             <Stack
@@ -235,9 +236,10 @@ const CreateAddNewParticipantForm = ({
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
+                color="secondary"
               ></TextField>
             </Stack>
             <Stack

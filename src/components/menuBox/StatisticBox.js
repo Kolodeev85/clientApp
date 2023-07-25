@@ -8,14 +8,15 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { useStyles } from "../../style/useStyle";
 import { useNavigate } from "react-router-dom";
-import { deepPurple } from "@mui/material/colors";
 import ListIcon from "@mui/icons-material/List";
 
 const StatisticBox = ({ selectedIndex, handleListItemClick }) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const navigate = useNavigate();
 
   return (
@@ -38,7 +39,7 @@ const StatisticBox = ({ selectedIndex, handleListItemClick }) => {
               }}
             >
               <ListItemIcon>
-                <ListIcon sx={{ color: `${deepPurple[500]}` }} />
+                <ListIcon sx={{ color: palette.primary.main }} />
               </ListItemIcon>
               <ListItemText primary="Статистика" />
             </ListItemButton>

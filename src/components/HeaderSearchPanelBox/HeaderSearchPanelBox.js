@@ -215,7 +215,7 @@ const HeaderSearchPanelBox = (props) => {
                         nameGroup,
                         subName
                       );
-                      setActiveButton("Активные");
+                      setActiveButton("Сданные");
                       setAllAreasChecked(false);
                       setFreeAreasChecked(false);
                       setInactiveAreasChecked(false);
@@ -228,7 +228,7 @@ const HeaderSearchPanelBox = (props) => {
                   }}
                 />
               }
-              label="Активные"
+              label="Сданные"
               labelPlacement="top"
               disabled={buttonHidden}
             />
@@ -236,25 +236,23 @@ const HeaderSearchPanelBox = (props) => {
         ) : (
           <Badge
             variant="contained"
-            badgeContent={
-              activeButton === "Активные" ? areasList?.length : null
-            }
+            badgeContent={activeButton === "Сданные" ? areasList?.length : null}
             color="warning"
           >
             <Button
               variant="contained"
               className={cx(
                 classes.btn,
-                activeButton === "Активные" && classes.btnIsActive
+                activeButton === "Сданные" && classes.btnIsActive
               )}
               onClick={() => {
                 onLoadingAreasByStatusType(token, "active", nameGroup, subName);
-                setActiveButton("Активные");
+                setActiveButton("Сданные");
                 setShowPaginationButton(false);
               }}
               disabled={buttonHidden}
             >
-              Активные
+              Сданные
             </Button>
           </Badge>
         )}
@@ -278,7 +276,7 @@ const HeaderSearchPanelBox = (props) => {
                         nameGroup,
                         subName
                       );
-                      setActiveButton("Неактивные");
+                      setActiveButton("Недоступные");
                       setAllAreasChecked(false);
                       setFreeAreasChecked(false);
                       setActiveAreasChecked(false);
@@ -291,7 +289,7 @@ const HeaderSearchPanelBox = (props) => {
                   }}
                 />
               }
-              label="Неактивные"
+              label="Недоступные"
               labelPlacement="top"
               disabled={buttonHidden}
             />
@@ -300,7 +298,7 @@ const HeaderSearchPanelBox = (props) => {
           <Badge
             variant="contained"
             badgeContent={
-              activeButton === "Неактивные" ? areasList?.length : null
+              activeButton === "Недоступные" ? areasList?.length : null
             }
             color="secondary"
           >
@@ -308,7 +306,7 @@ const HeaderSearchPanelBox = (props) => {
               variant="contained"
               className={cx(
                 classes.btn,
-                activeButton === "Неактивные" && classes.btnIsActive
+                activeButton === "Недоступные" && classes.btnIsActive
               )}
               onClick={() => {
                 onLoadingAreasByStatusType(
@@ -317,12 +315,12 @@ const HeaderSearchPanelBox = (props) => {
                   nameGroup,
                   subName
                 );
-                setActiveButton("Неактивные");
+                setActiveButton("Недоступные");
                 setShowPaginationButton(false);
               }}
               disabled={buttonHidden}
             >
-              Неактивные
+              Недоступные
             </Button>
           </Badge>
         )}
@@ -346,7 +344,7 @@ const HeaderSearchPanelBox = (props) => {
                         nameGroup,
                         subName
                       );
-                      setActiveButton("Задержанные");
+                      setActiveButton("Оконченные");
                       setAllAreasChecked(false);
                       setFreeAreasChecked(false);
                       setActiveAreasChecked(false);
@@ -359,7 +357,7 @@ const HeaderSearchPanelBox = (props) => {
                   }}
                 />
               }
-              label="Задержанные"
+              label="Оконченные"
               labelPlacement="top"
               disabled={buttonHidden}
             />
@@ -368,7 +366,7 @@ const HeaderSearchPanelBox = (props) => {
           <Badge
             variant="contained"
             badgeContent={
-              activeButton === "Задержанные" ? areasList?.length : null
+              activeButton === "Оконченные" ? areasList?.length : null
             }
             color="error"
           >
@@ -376,16 +374,16 @@ const HeaderSearchPanelBox = (props) => {
               variant="contained"
               className={cx(
                 classes.btn,
-                activeButton === "Задержанные" && classes.btnIsActive
+                activeButton === "Оконченные" && classes.btnIsActive
               )}
               onClick={() => {
                 onLoadingAreasByStatusType(token, "holded", nameGroup, subName);
-                setActiveButton("Задержанные");
+                setActiveButton("Оконченные");
                 setShowPaginationButton(false);
               }}
               disabled={buttonHidden}
             >
-              Задержанные
+              Оконченные
             </Button>
           </Badge>
         )}
@@ -404,7 +402,7 @@ const HeaderSearchPanelBox = (props) => {
           className={classes.createBtn}
           startIcon={!isMobile ? <AddIcon /> : null}
         >
-          {!isMobile ? "Создать участок" : <AddIcon />}
+          {!isMobile ? "Добавить помещение" : <AddIcon />}
         </Button>
       </Stack>
       <Button

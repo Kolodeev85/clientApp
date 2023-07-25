@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import { useStyles } from "../../style/useStyle";
@@ -26,6 +27,7 @@ import { useSnackbar } from "notistack";
 
 const CrearePassOffAreaForm = (props) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const { enqueueSnackbar } = useSnackbar();
   const today = dayjs();
 
@@ -122,11 +124,11 @@ const CrearePassOffAreaForm = (props) => {
         });
       }
       if (responseHistory.status === 200) {
-        enqueueSnackbar(`Участок ${number} сдан успешно!`, {
+        enqueueSnackbar(`Помещение ${number}. Аренда завершина успешно!`, {
           variant: "success",
         });
       } else {
-        enqueueSnackbar(`Произошла ошибка при сдачи участка ${number}!`, {
+        enqueueSnackbar(`Произошла ошибка!`, {
           variant: "error",
         });
       }
@@ -153,7 +155,7 @@ const CrearePassOffAreaForm = (props) => {
       }}
       sx={{
         ".css-sox5kk-MuiBackdrop-root": {
-          backgroundColor: "rgba(12, 1, 13, 0.81)",
+          backgroundColor: "rgba(25, 25, 0, 0.81)",
         },
       }}
     >
@@ -167,22 +169,26 @@ const CrearePassOffAreaForm = (props) => {
           </IconButton>
           <Typography
             variant="h5"
-            sx={{ mb: 4, ml: 2, fontWeight: "520", color: deepPurple[500] }}
+            sx={{
+              mb: 4,
+              ml: 3,
+              color: palette.secondary.main,
+            }}
           >
-            {number ? `Cдать участок ${number}` : null}
+            {number ? `Завершить аренду помещения: ${number}` : null}
           </Typography>
           <form onSubmit={onSubmitDataPassOffForm}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker"]}>
                 <DatePicker
-                  label="Дата сдачи участка"
+                  label="Дата окончания аренды"
                   format="DD/MM/YYYY"
                   sx={{
                     ".css-1wc848c-MuiFormHelperText-root": {
                       m: 0,
                       pt: 1,
                       mb: 3,
-                      color: orange[900],
+                      color: palette.secondary.main,
                     },
                     width: "90%",
                     ml: 3,
@@ -205,17 +211,18 @@ const CrearePassOffAreaForm = (props) => {
               multiline
               rows={5}
               fullWidth
-              helperText="Добавьте примечания такие, как грубые отказы, иностранцы, пожелания, код двери и т.д"
+              helperText="Добавьте примечания к помещению в период аренды"
               sx={{
                 ".css-1wc848c-MuiFormHelperText-root": {
                   m: 0,
                   pt: "8px",
-                  color: orange[900],
+                  color: palette.secondary.main,
                 },
                 width: "90%",
                 ml: 3,
                 mb: 4,
               }}
+              color="secondary"
             ></TextField>
             <FormControlLabel
               control={
@@ -224,7 +231,7 @@ const CrearePassOffAreaForm = (props) => {
                   onChange={(e) => setCheck(e.target.checked)}
                 />
               }
-              label='Отметьте для того, чтобы участок стал "Неактивным"'
+              label='Сделать помещение "Недоступным"'
               id="1"
               style={{ marginBottom: "24px", marginLeft: "10px" }}
             />
@@ -235,7 +242,7 @@ const CrearePassOffAreaForm = (props) => {
               className={classes.btnReturnArea}
               disabled={loading}
             >
-              {loading ? "Загрузка" : "Сдать"}
+              {loading ? "Загрузка" : "Завершить"}
             </Button>
           </form>
         </Paper>

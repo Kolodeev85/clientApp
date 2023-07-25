@@ -11,9 +11,10 @@ import {
   IconButton,
   Tooltip,
   Collapse,
+  useTheme,
 } from "@mui/material";
 import { useStyles } from "../../style/useStyle";
-import { deepPurple, red, orange, green } from "@mui/material/colors";
+import { red, orange, green } from "@mui/material/colors";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import AddIcon from "@mui/icons-material/Add";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
@@ -28,6 +29,7 @@ import { ServicesStrapi } from "../../services/Strapi.service";
 
 const EventBox = (props) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const token = useContext(TokenContext);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -126,7 +128,7 @@ const EventBox = (props) => {
                   >
                     <ListItemIcon>
                       <MapsHomeWorkOutlinedIcon
-                        sx={{ color: `${deepPurple[500]}` }}
+                        sx={{ color: palette.primary.main }}
                       />
                     </ListItemIcon>
                     <ListItemText primary={item.nameEvent} />

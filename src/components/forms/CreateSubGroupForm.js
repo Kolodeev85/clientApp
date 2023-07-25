@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import { useStyles } from "../../style/useStyle";
@@ -18,6 +19,7 @@ import { ServicesStrapi } from "../../services/Strapi.service";
 
 const CreateSubGroupForm = (props) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const token = useContext(TokenContext);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -47,12 +49,12 @@ const CreateSubGroupForm = (props) => {
     const checkGroup = dataGroup.find((item) => item.name === name);
 
     if (!name) {
-      enqueueSnackbar("Укажите название подгруппы", { variant: "warning" });
+      enqueueSnackbar("Укажите этаж!", { variant: "warning" });
       return;
     }
 
     if (checkGroup) {
-      enqueueSnackbar("Подгруппа с таким названием существует", {
+      enqueueSnackbar("Этаж существует!", {
         variant: "error",
       });
       setName("");
@@ -79,16 +81,16 @@ const CreateSubGroupForm = (props) => {
         }
       );
       if (response.status === 200) {
-        enqueueSnackbar(`Подгруппа ${name} создана успешно`, {
+        enqueueSnackbar(`Этаж ${name} добавлен успешно!`, {
           variant: "success",
         });
       } else {
-        enqueueSnackbar("Произошла ошибка при создании группы", {
+        enqueueSnackbar("Произошла ошибка при добавлении этажа!", {
           variant: "error",
         });
       }
     } catch (e) {
-      enqueueSnackbar("Произошла ошибка при создании группы", {
+      enqueueSnackbar("Произошла ошибка при добавлении этажа!", {
         variant: "error",
       });
     }
@@ -113,7 +115,7 @@ const CreateSubGroupForm = (props) => {
       }}
       sx={{
         ".css-sox5kk-MuiBackdrop-root": {
-          backgroundColor: "rgba(12, 1, 13, 0.81)",
+          backgroundColor: "rgba(25, 25, 0, 0.81)",
         },
       }}
     >
@@ -127,28 +129,33 @@ const CreateSubGroupForm = (props) => {
           </IconButton>
           <Typography
             variant="h5"
-            sx={{ mb: 4, mt: 2, fontWeight: "520", color: deepPurple[500] }}
+            sx={{
+              mb: 4,
+              mt: 2,
+              fontWeight: "520",
+              color: palette.secondary.main,
+            }}
           >
-            {`Создание подгруппы для группы ${nameGroup}`}
+            {`Добавление этажа для торгового центра "${nameGroup}"`}
           </Typography>
           <form onSubmit={onSubmitDataCreateSubGroup}>
             <TextField
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              label="Название подгруппы"
+              label="Этаж"
               variant="outlined"
               fullWidth
-              helperText={`Дайте название подгруппе`}
+              helperText={`Добавьте номер этажа`}
               sx={{
                 ".css-1wc848c-MuiFormHelperText-root": {
                   m: 0,
                   pt: 1,
-                  color: orange[900],
+                  color: palette.secondary.main,
                   mb: "32px",
                 },
               }}
-              color="primary"
+              color="secondary"
             ></TextField>
             <Button
               type="submit"
@@ -157,7 +164,7 @@ const CreateSubGroupForm = (props) => {
               className={classes.btnCreatSubGroup}
               disabled={loading}
             >
-              Создать
+              Добавить
             </Button>
           </form>
         </Box>

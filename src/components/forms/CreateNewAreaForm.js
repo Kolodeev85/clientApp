@@ -23,7 +23,7 @@ import { ServicesStrapi } from "../../services/Strapi.service";
 const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
   const { classes } = useStyles();
   const { enqueueSnackbar } = useSnackbar();
-  const { breakpoints } = useTheme();
+  const { breakpoints, palette } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down(1450));
   const isMobileForm = useMediaQuery(breakpoints.down(1050));
 
@@ -89,14 +89,14 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
     const checkAdress = areasList.find((item) => item.adress === adress);
 
     if (number === "") {
-      enqueueSnackbar("Номер участка обязателен!", {
+      enqueueSnackbar("Номер помещения обязателен!", {
         variant: "warning",
       });
       return;
     }
     if (checkNumber) {
       enqueueSnackbar(
-        `Участок с таким номер существует!. Следующий порядковый номер ${
+        `Помещение с таким номер существует!. Следующий порядковый номер ${
           pagination.total + 1
         }`,
         {
@@ -107,7 +107,7 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
     }
 
     if (!isValidNumber) {
-      enqueueSnackbar("Номер участка должен содержать только цифры!", {
+      enqueueSnackbar("Номер помещения должен содержать только цифры!", {
         variant: "warning",
       });
       return;
@@ -120,7 +120,7 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
       return;
     }
     if (checkAdress) {
-      enqueueSnackbar("Участок с таким адресом существует!", {
+      enqueueSnackbar("Помещение с таким адресом существует!", {
         variant: "error",
       });
       return;
@@ -165,16 +165,16 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
         }
       );
       if (response.status === 200) {
-        enqueueSnackbar(`Участок ${number} добавлен успешно!`, {
+        enqueueSnackbar(`Помещение ${number} добавлено успешно!`, {
           variant: "success",
         });
       } else {
-        enqueueSnackbar("Произошла ошибка создания участка!", {
+        enqueueSnackbar("Произошла ошибка добавлении помещения!", {
           variant: "error",
         });
       }
     } catch (e) {
-      enqueueSnackbar("Произошла ошибка создания участка!", {
+      enqueueSnackbar("Произошла ошибка создания помещения!", {
         variant: "error",
       });
     }
@@ -198,7 +198,7 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
         <Box>
           <Stack direction="row" justifyContent="space-between">
             <Typography variant="h3" className={classes.h1Create}>
-              Создать участок
+              Добавление помещения
             </Typography>
             <IconButton
               sx={{ height: "50px", width: "50px", mr: 4, mt: 4 }}
@@ -217,25 +217,25 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
                 name="number"
                 value={number}
                 onChange={(e) => setNumber(e.target.value.trim())}
-                label="Номер участка"
+                label="Номер помещения"
                 variant="outlined"
                 fullWidth
-                helperText={`Присвойте участку номер. Следующий номер: ${
+                helperText={`Присвойте помещению номер. Следующий номер: ${
                   pagination.total + 1
                 }`}
                 sx={{
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
-                color="primary"
+                color="secondary"
                 inputRef={myRef}
               ></TextField>
 
               <TextField
-                label="Группа"
+                label="Торговые центры"
                 name="group"
                 value={group}
                 onChange={(e) => setGroup(e.target.value)}
@@ -246,17 +246,18 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
                   loading
                     ? "Идет загрузка данных"
                     : dataGroup.length === 0
-                    ? "Группы не созданы"
-                    : "Выберите группу"
+                    ? "Торговые центры не созданы"
+                    : "Выберите торговый центер"
                 }
                 sx={{
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
                 disabled={dataGroup.length === 0}
+                color="secondary"
               >
                 {dataGroup
                   .slice()
@@ -272,7 +273,7 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
               {!dataSubGroups[0]?.subgroups ||
               dataSubGroups[0]?.subgroups?.length === 0 ? null : (
                 <TextField
-                  label="Подгруппа"
+                  label="Этаж"
                   name="subgroups"
                   value={subgroupsList}
                   onChange={(e) => setSubgroupsList(e.target.value)}
@@ -283,16 +284,17 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
                     loading
                       ? "Идет загрузка данных"
                       : dataSubGroups.length === 0
-                      ? "Подгруппы не созданы"
-                      : "Выберите подгруппу"
+                      ? "Этажи не созданы"
+                      : "Выберите этаж"
                   }
                   sx={{
                     ".css-1wc848c-MuiFormHelperText-root": {
                       m: 0,
                       pt: "8px",
-                      color: orange[900],
+                      color: palette.secondary.main,
                     },
                   }}
+                  color="secondary"
                 >
                   {dataSubGroups[0]?.subgroups
                     ?.slice()
@@ -319,14 +321,15 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
                 onChange={(e) => setAdress(e.target.value)}
                 variant="outlined"
                 fullWidth
-                helperText="Укажите адрес участка"
+                helperText="Укажите адрес помещения"
                 sx={{
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
+                color="secondary"
               ></TextField>
               <input
                 type="file"
@@ -344,7 +347,7 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
                   className={classes.btnUploadAvatar}
                   fullWidth="true"
                 >
-                  {!image ? "Загрузить карточку участка" : "Карточка добавлена"}
+                  {!image ? "Загрузить фото помещения" : "Фото добавлены"}
                 </Button>
               </label>
             </Stack>
@@ -361,14 +364,15 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
                 multiline
                 rows={isMobileForm ? 3 : 9}
                 fullWidth
-                helperText="Добавьте подробную информацию такую как, тип дома кол-во подьездов, квартир и т.д"
+                helperText="Добавьте подробную информацию"
                 sx={{
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
+                color="secondary"
               ></TextField>
               <TextField
                 name="description"
@@ -378,14 +382,15 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
                 multiline
                 rows={isMobileForm ? 3 : 9}
                 fullWidth
-                helperText="Добавьте описание к участку такие как, грубые отказы, пожелания и т.д"
+                helperText="Добавьте описание"
                 sx={{
                   ".css-1wc848c-MuiFormHelperText-root": {
                     m: 0,
                     pt: "8px",
-                    color: orange[900],
+                    color: palette.secondary.main,
                   },
                 }}
+                color="secondary"
               ></TextField>
             </Stack>
             <Stack
@@ -404,8 +409,8 @@ const CreateNewAreaForm = ({ onLoadingAllAreas, areasList, pagination }) => {
               >
                 {loading ? (
                   "Загрузка данных"
-                ) : "Создать участок" && !isMobile ? (
-                  "Создать участок"
+                ) : "Добавить" && !isMobile ? (
+                  "Добавить"
                 ) : (
                   <AddIcon />
                 )}

@@ -32,7 +32,7 @@ import LoadingAreas from "../errorComponents/LoadingAreas";
 const TeameListPanel = ({ onCloseModalWindow, onOpenModalWindow }) => {
   const { classes } = useStyles();
   const navigate = useNavigate();
-  const { breakpoints } = useTheme();
+  const { breakpoints, palette } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down(500));
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -105,7 +105,7 @@ const TeameListPanel = ({ onCloseModalWindow, onOpenModalWindow }) => {
                     pb: 3,
                   }}
                 >
-                  Возвещатели
+                  Арендаторы
                 </Typography>
                 <IconButton
                   className={classes.btnCloseTeamList}
@@ -118,26 +118,30 @@ const TeameListPanel = ({ onCloseModalWindow, onOpenModalWindow }) => {
                 <Table>
                   <TableHead>
                     <TableRow
-                      sx={{ borderTop: `1px solid ${deepPurple[500]}` }}
+                      sx={{ borderTop: `1px solid ${palette.primary.main}` }}
                     >
                       <TableCell
                         className={classes.tableCell}
                         sx={{
                           pl: 4,
-                          borderBottom: `1px solid ${deepPurple[500]}`,
+                          borderBottom: `1px solid ${palette.primary.main}`,
                         }}
                       >
                         Имя:
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        sx={{ borderBottom: `1px solid ${deepPurple[500]}` }}
+                        sx={{
+                          borderBottom: `1px solid ${palette.primary.main}`,
+                        }}
                       >
                         Номер телефона:
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        sx={{ borderBottom: `1px solid ${deepPurple[500]}` }}
+                        sx={{
+                          borderBottom: `1px solid ${palette.primary.main}`,
+                        }}
                       >
                         @Email:
                       </TableCell>
@@ -145,25 +149,25 @@ const TeameListPanel = ({ onCloseModalWindow, onOpenModalWindow }) => {
                         className={classes.tableCell}
                         sx={{
                           width: "10%",
-                          borderBottom: `1px solid ${deepPurple[500]}`,
+                          borderBottom: `1px solid ${palette.primary.main}`,
                         }}
                       >
-                        Активные участки:
+                        Активные аренды:
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
                         sx={{
                           width: "20%",
-                          borderBottom: `1px solid ${deepPurple[500]}`,
+                          borderBottom: `1px solid ${palette.primary.main}`,
                         }}
                       >
-                        История участков:
+                        История аренды:
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
                         sx={{
                           width: "15%",
-                          borderBottom: `1px solid ${deepPurple[500]}`,
+                          borderBottom: `1px solid ${palette.primary.main}`,
                         }}
                       >
                         Примечания:
@@ -173,7 +177,7 @@ const TeameListPanel = ({ onCloseModalWindow, onOpenModalWindow }) => {
                   <TableBody>
                     {dataPublishers.length === 0 && (
                       <Typography className={classes.notPublishers}>
-                        Возвещатели не добавлены
+                        Арендаторов нет!
                       </Typography>
                     )}
 
@@ -212,7 +216,7 @@ const TeameListPanel = ({ onCloseModalWindow, onOpenModalWindow }) => {
                                 ? item?.histories
                                     ?.map((history) => history?.area?.number)
                                     .join(", ")
-                                : "Нет сданных участков"}
+                                : "Нет завершенных аренд"}
                             </TableCell>
                             <TableCell>
                               {item.note ? item.note : "Нет данных"}
@@ -260,7 +264,7 @@ const TeameListPanel = ({ onCloseModalWindow, onOpenModalWindow }) => {
             >
               <MenuItem onClick={() => navigate("/areas")}>
                 <CachedIcon sx={{ pr: 1 }} />
-                Выдать участок
+                Аренда помещения
               </MenuItem>
               {/* <MenuItem onClick={onShowMenu}>
             <CreateIcon sx={{ pr: 1 }} />

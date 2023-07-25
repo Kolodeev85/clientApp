@@ -95,14 +95,14 @@ const ContentPanel = (props) => {
         );
         if (response.status === 200) {
           enqueueSnackbar(
-            `Возвещатель ${publisher} не здал участок ${number} вовремя!. Статус участка изменен!`,
+            `Срок аренды помещения ${number} истек.  Арендатор ${publisher}!. Статус помещения изменен!`,
             { variant: "warning" }
           );
           setStatusChangeExecuted(true);
         }
       }
     } catch (e) {
-      enqueueSnackbar("Произошла ошибка при обновлении статуса участка!", {
+      enqueueSnackbar("Произошла ошибка при обновлении статуса помещения!", {
         variant: "error",
       });
     }
@@ -155,7 +155,7 @@ const ContentPanel = (props) => {
               className={classes.alertContent}
             >
               <Alert variant="outlined" severity="error">
-                Внимание! Участкок будет удален на сервере без возможности
+                Внимание! Помещение будет удалено с сервера без возможности
                 восстановления. Вы уверены?
               </Alert>
               <Stack direction="row">
@@ -212,15 +212,15 @@ const ContentPanel = (props) => {
                   break;
                 case "active":
                   className = classes.badgeBusy;
-                  statusNames = "Активные";
+                  statusNames = "Сданные";
                   break;
                 case "unactive":
                   className = classes.badgeInactive;
-                  statusNames = "Неактивные";
+                  statusNames = "Недоступные";
                   break;
                 case "holded":
                   className = classes.badgeDetainees;
-                  statusNames = "Задержанные";
+                  statusNames = "Оконченные";
                   break;
                 default:
                   className = classes.badgeFree;
@@ -260,24 +260,26 @@ const ContentPanel = (props) => {
                           {`${
                             item?.group?.name
                               ? item?.group?.name
-                              : "Группа не присвоена"
+                              : "Нет торгового центра"
                           }${
                             item?.subgroup?.name
                               ? ` (${item.subgroup.name})`
                               : ""
                           }`}
                         </Typography>
+
                         <Typography
                           variant="body2"
                           sx={{
                             fontWeight: "400",
                             fontSize: "14px",
-                            p: "2px 5px 0px 5px",
+                            p: "8px 13px 8px 10px",
                           }}
                           className={className}
                         >
                           {statusNames}
                         </Typography>
+
                         <Stack sx={{ width: "60%", alignSelf: "start" }}>
                           {item.statusName === "active" && (
                             <div>
@@ -341,7 +343,7 @@ const ContentPanel = (props) => {
                               item.statusName === "holded"
                             }
                           >
-                            ВЫДАТЬ
+                            АРЕНДА
                           </Button>
                           <Button
                             onClick={(e) =>
@@ -355,7 +357,7 @@ const ContentPanel = (props) => {
                               item.statusName === "unactive"
                             }
                           >
-                            СДАТЬ
+                            ЗАВЕРШИТЬ
                           </Button>
                         </Stack>
                         <Stack direction="row" sx={{ mr: 2 }}>

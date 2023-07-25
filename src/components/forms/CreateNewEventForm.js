@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import { useStyles } from "../../style/useStyle";
@@ -25,6 +26,7 @@ const CreateNewEventForm = (props) => {
   } = props;
 
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const token = useContext(TokenContext);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -115,7 +117,7 @@ const CreateNewEventForm = (props) => {
       }}
       sx={{
         ".css-sox5kk-MuiBackdrop-root": {
-          backgroundColor: "rgba(12, 1, 13, 0.81)",
+          backgroundColor: "rgba(25, 25, 0, 0.81)",
         },
       }}
     >
@@ -129,7 +131,12 @@ const CreateNewEventForm = (props) => {
           </IconButton>
           <Typography
             variant="h5"
-            sx={{ mb: 4, mt: 2, fontWeight: "520", color: deepPurple[500] }}
+            sx={{
+              mb: 4,
+              mt: 2,
+              fontWeight: "520",
+              color: palette.secondary.main,
+            }}
           >
             Создание события
           </Typography>
@@ -146,11 +153,11 @@ const CreateNewEventForm = (props) => {
                 ".css-1wc848c-MuiFormHelperText-root": {
                   m: 0,
                   pt: 1,
-                  color: orange[900],
+                  color: palette.secondary.main,
                   mb: "32px",
                 },
               }}
-              color="primary"
+              color="secondary"
             ></TextField>
             <Button
               type="submit"

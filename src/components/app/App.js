@@ -32,13 +32,14 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: deepPurple[500],
+        main: yellow.A700,
       },
       warning: {
         main: green[800],
       },
       secondary: {
-        main: grey[900],
+        main: grey[800],
+        light: grey[50],
       },
       success: {
         main: blue[500],
@@ -54,9 +55,9 @@ function App() {
       values: {
         xs: 0,
         sm: isPanelOpen ? 1000 : 780,
-        md: isPanelOpen ? 1480 : 970,
-        lg: isPanelOpen ? 1850 : 1390,
-        xl: 1920,
+        md: isPanelOpen ? 1480 : 1055,
+        lg: isPanelOpen ? 2100 : 1551,
+        xl: 2101,
       },
     },
   });

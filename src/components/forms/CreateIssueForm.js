@@ -7,11 +7,11 @@ import {
   Button,
   IconButton,
   Stack,
+  useTheme,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Backdrop from "@mui/material/Backdrop";
 import { useStyles } from "../../style/useStyle";
-import { orange } from "@mui/material/colors";
 import CloseIcon from "@mui/icons-material/Close";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -28,6 +28,7 @@ import { AreaCardDocument } from "../../pdf/AreaCardDocument";
 
 const CreateIssueForm = (props) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const { enqueueSnackbar } = useSnackbar();
   dayjs.locale("ru");
 
@@ -44,9 +45,9 @@ const CreateIssueForm = (props) => {
 
   const [selectedDate, setSelectedDate] = useState(tomorrow);
   const [allDays, setAllDays] = useState(tomorrow.diff(today, "day"));
-  const helpText = `Расчетная дата сдачи участка: ${selectedDate.format(
+  const helpText = `Расчетная дата окончания аренды: ${selectedDate.format(
     "DD/MM/YYYY"
-  )}. Интервал обработки: ${allDays + 1}  дней`;
+  )}. Срок аренды: ${allDays + 1}  дней`;
 
   useEffect(() => {
     const newAllDays = selectedDate.diff(today, "day");
@@ -114,7 +115,7 @@ const CreateIssueForm = (props) => {
     e.preventDefault();
 
     if (publisher === null) {
-      enqueueSnackbar("Добавьте возвещателя", { variant: "warning" });
+      enqueueSnackbar("Добавьте арендат", { variant: "warning" });
       return;
     }
     setLoading(true);
@@ -159,11 +160,11 @@ const CreateIssueForm = (props) => {
         }
       );
       if (responseHistory.status && responseArea.status === 200) {
-        enqueueSnackbar(`Участок ${number} выдан успешно!`, {
+        enqueueSnackbar(`Помещение ${number} арендовано успешно!`, {
           variant: "success",
         });
       } else {
-        enqueueSnackbar(`Произошла ошибка при выдачи участка ${number}!`, {
+        enqueueSnackbar(`Произошла ошибка при аренде помещения ${number}!`, {
           variant: "error",
         });
       }
@@ -208,7 +209,7 @@ const CreateIssueForm = (props) => {
       }}
       sx={{
         ".css-sox5kk-MuiBackdrop-root": {
-          backgroundColor: "rgba(12, 1, 13, 0.81)",
+          backgroundColor: "rgba(25, 25, 0, 0.81)",
         },
       }}
     >
@@ -221,7 +222,7 @@ const CreateIssueForm = (props) => {
             <CloseIcon />
           </IconButton>
           <Typography variant="h5" className={classes.h5IssueForm}>
-            {number ? `Выдать участок ${number}` : null}
+            {number ? `Аренда помещения: ${number}` : null}
           </Typography>
           <form onSubmit={onSubmitDataIssueForm}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -233,17 +234,16 @@ const CreateIssueForm = (props) => {
                   <DatePicker
                     name="dateOfEnd"
                     onChange={changeDate}
-                    label="Дата окончания обработки участка"
+                    label="Дата окончания аренды"
                     format="DD/MM/YYYY"
                     sx={{
                       ".css-1wc848c-MuiFormHelperText-root": {
                         m: 0,
                         pt: 1,
-                        color: orange[900],
+                        color: palette.secondary.main,
                       },
                     }}
                     defaultValue={tomorrow}
-                    maxDate={tomorrow}
                     slotProps={{
                       textField: {
                         helperText: helpText,
@@ -252,7 +252,7 @@ const CreateIssueForm = (props) => {
                     disabled={!showBtn}
                   />
                   <TextField
-                    label="Возвещатель"
+                    label="Арендатор"
                     name="publisher"
                     value={publisher}
                     onChange={(e) => setPublisher(e.target.value)}
@@ -262,8 +262,8 @@ const CreateIssueForm = (props) => {
                       loading
                         ? "Идет загрузка данных..."
                         : dataPublishers.length === 0
-                        ? "Нет возвещателей в системе"
-                        : "Выберите возвещателя"
+                        ? "Нет арендаторов в системе"
+                        : "Выберите арендатора"
                     }
                     disabled={
                       loading || dataPublishers.length === 0 || !showBtn
@@ -272,9 +272,10 @@ const CreateIssueForm = (props) => {
                       ".css-1wc848c-MuiFormHelperText-root": {
                         m: 0,
                         pt: "8px",
-                        color: orange[900],
+                        color: palette.secondary.main,
                       },
                     }}
+                    color="secondary"
                   >
                     {dataPublishers
                       ?.slice()
@@ -305,10 +306,11 @@ const CreateIssueForm = (props) => {
                       ".css-1wc848c-MuiFormHelperText-root": {
                         m: 0,
                         pt: "8px",
-                        color: orange[900],
+                        color: palette.secondary.main,
                       },
                     }}
                     disabled={loading || dataEvent.length === 0 || !showBtn}
+                    color="secondary"
                   >
                     {dataEvent
                       ?.slice()
@@ -341,10 +343,11 @@ const CreateIssueForm = (props) => {
                         ".css-1wc848c-MuiFormHelperText-root": {
                           m: 0,
                           pt: "8px",
-                          color: orange[900],
+                          color: palette.secondary.main,
                         },
                       }}
                       disabled={!showBtn}
+                      color="secondary"
                     >
                       {subevents[0]?.subevents
                         ?.slice()
@@ -369,7 +372,7 @@ const CreateIssueForm = (props) => {
                 className={classes.btnIssue}
                 disabled={loading}
               >
-                {loading ? "Загрузка" : "Выдать"}
+                {loading ? "Загрузка" : "Арендовать"}
               </Button>
             ) : (
               <Box className={classes.btnIssueLink} onClick={handleBoxClick}>

@@ -15,7 +15,7 @@ const NotAreaError = () => {
         textAlign="center"
       >
         <Typography variant="h4" className={classes.h1AreasNotFound}>
-          Участки не найдены!
+          Помещения не найдены!
         </Typography>
         <div>
           <Image className={classes.imageNotAreas} src={image} />

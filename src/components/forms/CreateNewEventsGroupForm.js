@@ -6,10 +6,10 @@ import {
   Typography,
   Button,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import { useStyles } from "../../style/useStyle";
-import { deepPurple, orange } from "@mui/material/colors";
 import CloseIcon from "@mui/icons-material/Close";
 import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../../context/tokenContext";
@@ -18,6 +18,7 @@ import { ServicesStrapi } from "../../services/Strapi.service";
 
 const CreateNewEventsGroupForm = (props) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const token = useContext(TokenContext);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -127,7 +128,12 @@ const CreateNewEventsGroupForm = (props) => {
           </IconButton>
           <Typography
             variant="h5"
-            sx={{ mb: 4, mt: 2, fontWeight: "520", color: deepPurple[500] }}
+            sx={{
+              mb: 4,
+              mt: 2,
+              fontWeight: "520",
+              color: palette.secondary.main,
+            }}
           >
             Создание группы событий
           </Typography>
@@ -144,11 +150,11 @@ const CreateNewEventsGroupForm = (props) => {
                 ".css-1wc848c-MuiFormHelperText-root": {
                   m: 0,
                   pt: 1,
-                  color: orange[900],
+                  color: palette.secondary.main,
                   mb: "32px",
                 },
               }}
-              color="primary"
+              color="secondary"
             ></TextField>
             <Button
               type="submit"

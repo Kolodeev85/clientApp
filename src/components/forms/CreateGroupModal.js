@@ -6,10 +6,10 @@ import {
   Typography,
   Button,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import { useStyles } from "../../style/useStyle";
-import { deepPurple, orange } from "@mui/material/colors";
 import CloseIcon from "@mui/icons-material/Close";
 import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../../context/tokenContext";
@@ -18,6 +18,7 @@ import { ServicesStrapi } from "../../services/Strapi.service";
 
 const CreateGroupModal = (props) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const token = useContext(TokenContext);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -49,12 +50,14 @@ const CreateGroupModal = (props) => {
     const checkGroup = dataGroup.find((item) => item.name === name);
 
     if (!name) {
-      enqueueSnackbar("Укажите название группы", { variant: "warning" });
+      enqueueSnackbar("Укажите название торгового центра!", {
+        variant: "warning",
+      });
       return;
     }
 
     if (checkGroup) {
-      enqueueSnackbar("Группа с таким названием существует", {
+      enqueueSnackbar("Торговый центр с таким названием существует!", {
         variant: "error",
       });
       setName("");
@@ -80,16 +83,16 @@ const CreateGroupModal = (props) => {
         }
       );
       if (response.status === 200) {
-        enqueueSnackbar(`группа ${name} создана успешно`, {
+        enqueueSnackbar(`Торговый центр "${name}" создана успешно!`, {
           variant: "success",
         });
       } else {
-        enqueueSnackbar("Произошла ошибка при создании группы", {
+        enqueueSnackbar("Произошла ошибка при создании торгового центра", {
           variant: "error",
         });
       }
     } catch (e) {
-      enqueueSnackbar("Произошла ошибка при создании группы", {
+      enqueueSnackbar("Произошла ошибка при создании торгового центра", {
         variant: "error",
       });
     }
@@ -114,7 +117,7 @@ const CreateGroupModal = (props) => {
       }}
       sx={{
         ".css-sox5kk-MuiBackdrop-root": {
-          backgroundColor: "rgba(12, 1, 13, 0.81)",
+          backgroundColor: "rgba(25, 25, 0, 0.81)",
           zIndex: 999,
         },
       }}
@@ -129,28 +132,33 @@ const CreateGroupModal = (props) => {
           </IconButton>
           <Typography
             variant="h5"
-            sx={{ mb: 4, mt: 2, fontWeight: "520", color: deepPurple[500] }}
+            sx={{
+              mb: 4,
+              mt: 2,
+              fontWeight: "520",
+              color: palette.secondary.main,
+            }}
           >
-            Создание группы участков
+            Создание торгового центра
           </Typography>
           <form onSubmit={onSubmitDataCreateGroup}>
             <TextField
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              label="Название группы"
+              label="Название торгового центра"
               variant="outlined"
               fullWidth
-              helperText="Дайте название группе участков "
+              helperText="Дайте название торговому центру "
               sx={{
                 ".css-1wc848c-MuiFormHelperText-root": {
                   m: 0,
                   pt: 1,
-                  color: orange[900],
+                  color: palette.secondary.main,
                   mb: "32px",
                 },
               }}
-              color="primary"
+              color="secondary"
             ></TextField>
             <Button
               type="submit"

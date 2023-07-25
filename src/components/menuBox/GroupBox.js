@@ -11,6 +11,7 @@ import {
   Button,
   IconButton,
   Tooltip,
+  useTheme,
 } from "@mui/material";
 import TableViewIcon from "@mui/icons-material/TableView";
 import { useStyles } from "../../style/useStyle";
@@ -28,6 +29,7 @@ import { useSnackbar } from "notistack";
 
 const GroupBox = (props) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
   const token = useContext(TokenContext);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -62,7 +64,7 @@ const GroupBox = (props) => {
     deleteGroup(token, id)
       .then(() => onLoadingAllGroup(token))
       .finally(() =>
-        enqueueSnackbar(`Группа ${name} удалена успешно!`, {
+        enqueueSnackbar(`Торговый центр ${name} удален успешно!`, {
           variant: "success",
         })
       );
@@ -72,7 +74,7 @@ const GroupBox = (props) => {
     deleteSubGroup(token, id)
       .then(() => onLoadingAllGroup(token))
       .finally(() =>
-        enqueueSnackbar(`Подгруппа ${name} удалена успешно!`, {
+        enqueueSnackbar(`Этаж ${name} удален успешно!`, {
           variant: "success",
         })
       );
@@ -90,8 +92,14 @@ const GroupBox = (props) => {
     <Accordion sx={{ boxShadow: "none" }}>
       <AccordionSummary>
         <TableViewIcon sx={{ mt: "5px", mr: "10px" }} />
-        <Typography sx={{ fontSize: "24px", fontWeight: "600" }}>
-          Группы
+        <Typography
+          sx={{
+            fontSize: "24px",
+            fontWeight: "600",
+            color: palette.secondary.main,
+          }}
+        >
+          Торговые центры
         </Typography>
       </AccordionSummary>
       <AccordionSummary>
@@ -109,7 +117,7 @@ const GroupBox = (props) => {
               >
                 <ListItemIcon>
                   <MapsHomeWorkOutlinedIcon
-                    sx={{ color: `${deepPurple[500]}` }}
+                    sx={{ color: palette.primary.main }}
                   />
                 </ListItemIcon>
                 <ListItemText
@@ -124,7 +132,7 @@ const GroupBox = (props) => {
             </List>
           )}
 
-          {dataGroup?.length === 0 && <p>Группы не созданы!</p>}
+          {dataGroup?.length === 0 && <p>Торговые центры не созданы!</p>}
           {dataGroup
             ?.slice()
             .sort((a, b) => a.name?.localeCompare(b.name))
@@ -151,7 +159,7 @@ const GroupBox = (props) => {
                   >
                     <ListItemIcon>
                       <MapsHomeWorkOutlinedIcon
-                        sx={{ color: `${deepPurple[500]}` }}
+                        sx={{ color: palette.primary.main }}
                       />
                     </ListItemIcon>
                     <ListItemText primary={item.name} />
@@ -175,7 +183,7 @@ const GroupBox = (props) => {
                       </ListItemIcon>
                     )}
                     <ListItemIcon>
-                      <Tooltip title="Добавить подгруппу">
+                      <Tooltip title="Добавить этаж">
                         <IconButton
                           onClick={() => {
                             toogleModalSubGroupOpen();
@@ -219,7 +227,9 @@ const GroupBox = (props) => {
                                     sx={{ color: `${orange.A700}` }}
                                   />
                                 </ListItemIcon>
-                                <ListItemText primary={itemSub.name} />
+                                <ListItemText
+                                  primary={`${itemSub.name} этаж`}
+                                />
                                 <ListItemIcon>
                                   <Tooltip title="Удалить">
                                     <IconButton
@@ -255,7 +265,7 @@ const GroupBox = (props) => {
               startIcon={<AddIcon />}
               fullWidth="true"
             >
-              Создать группу участков
+              Добавить торговый центр
             </Button>
           </List>
         </AccordionDetails>

@@ -6,6 +6,7 @@ import {
   grey,
   blue,
   green,
+  yellow,
 } from "@mui/material/colors";
 import { makeStyles } from "tss-react/mui";
 
@@ -14,31 +15,31 @@ export const useStyles = makeStyles()((theme) => {
   return {
     btn: {
       backgroundColor: palette.grey[300],
-      color: palette.grey[900],
+      color: palette.secondary.main,
       borderRadius: 40,
       pading: "6px 12px 6px 12px",
       border: `1px solid ${palette.grey.A400}`,
       boxShadow: "none",
       marginBottom: 10,
       "&:hover": {
-        backgroundColor: "rgba(98, 0, 238, 0.08)",
-        color: deepPurple[500],
-        border: `1px solid ${deepPurple[500]}`,
+        backgroundColor: "#fffde7",
+        color: palette.secondary.main,
+        border: `1px solid ${palette.primary.main}`,
       },
     },
     createBtn: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.secondary.main,
+      color: palette.secondary.light,
       borderRadius: 40,
       boxShadow: 15,
       width: "120%",
       padding: 16,
 
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.primary.main,
+        color: palette.secondary.main,
       },
       [breakpoints.down(1450)]: {
-        backgroundColor: orange["A700"],
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -46,12 +47,8 @@ export const useStyles = makeStyles()((theme) => {
         right: "5%",
         bottom: "5%",
         width: 10,
-        "&:hover": {
-          backgroundColor: deepPurple[500],
-        },
       },
       [breakpoints.down(795)]: {
-        backgroundColor: orange["A700"],
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -59,14 +56,11 @@ export const useStyles = makeStyles()((theme) => {
         right: "5%",
         top: "30%",
         width: 10,
-        "&:hover": {
-          backgroundColor: deepPurple[500],
-        },
       },
     },
     createBtn2: {
       [breakpoints.down(1450)]: {
-        backgroundColor: orange["A700"],
+        backgroundColor: palette.primary.main,
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -78,23 +72,23 @@ export const useStyles = makeStyles()((theme) => {
         justifyContent: "center",
         alignItems: "center",
         "&:hover": {
-          backgroundColor: deepPurple[500],
+          backgroundColor: palette.secondary.main,
+          color: palette.secondary.light,
         },
       },
     },
     createPublisherBtn: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.secondary.main,
+      color: palette.secondary.light,
       borderRadius: 40,
       boxShadow: 15,
-      width: "120%",
+      width: "100%",
       padding: 16,
-
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.primary.main,
+        color: palette.secondary.main,
       },
       [breakpoints.down(1450)]: {
-        backgroundColor: orange["A700"],
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -102,24 +96,21 @@ export const useStyles = makeStyles()((theme) => {
         right: "5%",
         bottom: "5%",
         width: 10,
-        "&:hover": {
-          backgroundColor: deepPurple[500],
-        },
       },
     },
     addBtn: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.primary.main,
+      color: palette.secondary.main,
       borderRadius: 40,
       boxShadow: 15,
       width: "25%",
       padding: 16,
 
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
       [breakpoints.down(1450)]: {
-        backgroundColor: orange["A700"],
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -127,12 +118,8 @@ export const useStyles = makeStyles()((theme) => {
         right: "-2%",
         bottom: "15%",
         width: 10,
-        "&:hover": {
-          backgroundColor: deepPurple[500],
-        },
       },
       [breakpoints.down(1050)]: {
-        backgroundColor: orange["A700"],
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -140,12 +127,8 @@ export const useStyles = makeStyles()((theme) => {
         right: "-10%",
         bottom: "-5%",
         width: 10,
-        "&:hover": {
-          backgroundColor: deepPurple[500],
-        },
       },
       [breakpoints.down(580)]: {
-        backgroundColor: orange["A700"],
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -153,24 +136,21 @@ export const useStyles = makeStyles()((theme) => {
         right: "-25%",
         bottom: "1%",
         width: 10,
-        "&:hover": {
-          backgroundColor: deepPurple[500],
-        },
       },
     },
     addBtnPub: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.primary.main,
+      color: palette.secondary.main,
       borderRadius: 40,
       boxShadow: 15,
       width: "25%",
       padding: 16,
 
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
       [breakpoints.down(1450)]: {
-        backgroundColor: orange["A700"],
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -178,12 +158,8 @@ export const useStyles = makeStyles()((theme) => {
         right: "-5%",
         bottom: "10%",
         width: 10,
-        "&:hover": {
-          backgroundColor: deepPurple[500],
-        },
       },
       [breakpoints.down(1200)]: {
-        backgroundColor: orange["A700"],
         borderRadius: 50,
         padding: 30,
         height: 2,
@@ -191,9 +167,6 @@ export const useStyles = makeStyles()((theme) => {
         right: "-5%",
         bottom: "-3%",
         width: 10,
-        "&:hover": {
-          backgroundColor: deepPurple[500],
-        },
       },
       [breakpoints.down(1000)]: {
         right: "-5%",
@@ -213,8 +186,8 @@ export const useStyles = makeStyles()((theme) => {
       },
     },
     btnIsActive: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.secondary.main,
+      color: palette.secondary.light,
       border: "none",
     },
     enterBtn: {
@@ -230,52 +203,56 @@ export const useStyles = makeStyles()((theme) => {
       },
     },
     btbCreatGroup: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.primary.main,
+      color: palette.secondary.main,
       borderRadius: 40,
       boxShadow: 15,
       width: "100%",
       padding: 16,
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
     },
     btnCreatSubGroup: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.primary.main,
+      color: palette.secondary.main,
       borderRadius: 40,
       boxShadow: 15,
       width: "100%",
       padding: 16,
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
     },
     btnCreatEvent: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.primary.main,
+      color: palette.secondary.main,
       borderRadius: 40,
       boxShadow: 15,
       width: "100%",
       padding: 16,
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
     },
     btnCreatSubEvent: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.primary.main,
+      color: palette.secondary.main,
       borderRadius: 40,
       boxShadow: 15,
       width: "100%",
       padding: 16,
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
     },
     btnIssue: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.primary.main,
+      color: palette.secondary.main,
       borderRadius: 40,
       boxShadow: 15,
       width: "40%",
@@ -283,7 +260,8 @@ export const useStyles = makeStyles()((theme) => {
       marginLeft: "60%",
       marginTop: 20,
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
     },
     btnIssueLink: {
@@ -299,30 +277,32 @@ export const useStyles = makeStyles()((theme) => {
       },
     },
     btnReturnArea: {
-      backgroundColor: orange["A700"],
-      color: "white",
+      backgroundColor: palette.primary.main,
+      color: palette.secondary.main,
       borderRadius: 40,
       boxShadow: 15,
       width: "40%",
       padding: 16,
       marginLeft: "55%",
       "&:hover": {
-        backgroundColor: deepPurple[500],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
     },
     btnTo: {
-      color: deepPurple[500],
+      color: palette.secondary.main,
       fontWeight: 500,
       marginLeft: 15,
       "&:hover": {
-        backgroundColor: purple[50],
+        backgroundColor: yellow[50],
       },
     },
     btnTo2: {
-      color: deepPurple[500],
+      color: palette.secondary.main,
       fontWeight: 500,
+      marginLeft: 15,
       "&:hover": {
-        backgroundColor: purple[50],
+        backgroundColor: yellow[50],
       },
     },
     btnEnd: {
@@ -340,12 +320,13 @@ export const useStyles = makeStyles()((theme) => {
       },
     },
     btnGroop: {
-      color: deepPurple[500],
+      color: palette.secondary.main,
       fontWeight: 500,
-      border: `1px solid ${deepPurple[500]}`,
+      border: `1px solid ${palette.primary.main}`,
       marginTop: 25,
       "&:hover": {
-        backgroundColor: purple[50],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
     },
     btnGroop2: {
@@ -370,11 +351,12 @@ export const useStyles = makeStyles()((theme) => {
       },
     },
     btnUploadAvatar: {
-      color: deepPurple[500],
+      color: palette.secondary.main,
       fontWeight: 500,
-      border: `1px solid ${deepPurple[500]}`,
+      border: `1px solid ${palette.primary.main}`,
       "&:hover": {
-        backgroundColor: purple[50],
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.light,
       },
     },
     btnArrow: {
@@ -418,7 +400,7 @@ export const useStyles = makeStyles()((theme) => {
       transition: "transform 0.2s ease-in-out",
       "&:hover": {
         transform: "scale(1.05)",
-        border: `2px solid ${deepPurple[500]}`,
+        border: `2px solid ${palette.secondary.main}`,
       },
     },
     imgAvatar: {
@@ -444,8 +426,8 @@ export const useStyles = makeStyles()((theme) => {
     },
     btnList: {
       "&:hover": {
-        backgroundColor: "rgba(187, 134, 252, 0.12)",
-        color: deepPurple[500],
+        backgroundColor: grey[60],
+        color: palette.secondary.main,
       },
     },
     badgeFree: {
@@ -539,17 +521,18 @@ export const useStyles = makeStyles()((theme) => {
       height: "auto",
     },
     tableCell: {
-      color: `${deepPurple[500]}`,
-      fontSize: "16px",
+      color: palette.secondary.main,
+      fontWeight: 600,
+      fontSize: "18px",
     },
     notAreas: {
       width: "380%",
       padding: 20,
     },
     notPublishers: {
-      width: "100%",
+      width: "200%",
       padding: 20,
-      paddingLeft: "155%",
+      paddingLeft: "210%",
     },
     searchInput: {
       width: "100%",
@@ -585,7 +568,7 @@ export const useStyles = makeStyles()((theme) => {
       paddingBottom: 35,
       fontWeight: 600,
       ml: "40%",
-      color: deepPurple[500],
+      color: palette.secondary.main,
       [breakpoints.down(1050)]: {
         paddingLeft: 50,
       },
@@ -689,7 +672,7 @@ export const useStyles = makeStyles()((theme) => {
     h5IssueForm: {
       marginBottom: 30,
       fontWeight: "520",
-      color: deepPurple[500],
+      color: palette.secondary.main,
       [breakpoints.down(480)]: {
         fontSize: 20,
       },
@@ -712,7 +695,7 @@ export const useStyles = makeStyles()((theme) => {
       paddingTop: 58,
       paddingBottom: 35,
       fontWeight: 600,
-      color: deepPurple[500],
+      color: palette.secondary.main,
       [breakpoints.down(1000)]: {
         paddingLeft: 30,
         fontSize: 35,

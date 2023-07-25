@@ -27,6 +27,7 @@ import AllAreasLine from "../statistic/AllAreasLine";
 
 const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
   const navigate = useNavigate();
+  const { palette } = useTheme();
   const token = useContext(TokenContext);
 
   const { breakpoints } = useTheme();
@@ -365,7 +366,7 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
             pb: 2,
             fontWeight: 550,
             fontSize: "20px",
-            color: deepPurple[500],
+            color: palette.secondary.main,
           }}
         >
           Всего в системе:
@@ -374,11 +375,14 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
           sx={{
             fontWeight: 500,
             fontSize: "20px",
-            color: deepPurple[500],
+            color: palette.secondary.main,
           }}
         >
-          участков:{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 800 }}>
+          помещений:{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.secondary.main, fontWeight: 800 }}
+          >
             {`${allAreasData.length}`}
           </Box>
         </Typography>
@@ -387,34 +391,27 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
           sx={{
             fontWeight: 500,
             fontSize: "20px",
-            color: deepPurple[500],
+            color: palette.secondary.main,
           }}
         >
-          групп:{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 800 }}>
+          торговых центров:{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.secondary.main, fontWeight: 800 }}
+          >
             {`${groupNames.length}`}
           </Box>
         </Typography>
         <Typography
-          sx={{
-            mb: "48px",
-            fontWeight: 500,
-            fontSize: "20px",
-            color: deepPurple[500],
-          }}
-        >
-          подгрупп:{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 800 }}>
-            {`${subGroupsNames.length}`}
-          </Box>
-        </Typography>
-        <Typography
           variant="h4"
-          sx={{ color: deepPurple[500], textAlign: "center", pb: 2 }}
+          sx={{ color: palette.secondary.main, textAlign: "center", pb: 2 }}
         >
-          Все участки{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 700 }}>
-            по группам:
+          Все помещения{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.primary.main, fontWeight: 700 }}
+          >
+            в торговых центрах:
           </Box>
         </Typography>
         <Stack
@@ -432,11 +429,19 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
         </Stack>
         <Typography
           variant="h4"
-          sx={{ color: deepPurple[500], textAlign: "center", mt: "24px", p: 2 }}
+          sx={{
+            color: palette.secondary.main,
+            textAlign: "center",
+            mt: "24px",
+            p: 2,
+          }}
         >
-          Все участки{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 700 }}>
-            по подгруппам:
+          Все помещения{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.primary.main, fontWeight: 700 }}
+          >
+            по этажам:
           </Box>
         </Typography>
         <Stack
@@ -455,15 +460,18 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
         <Typography
           variant="h4"
           sx={{
-            color: deepPurple[500],
+            color: palette.secondary.main,
             textAlign: "center",
             pb: 2,
             mt: "24px",
           }}
         >
-          Статусы участков по{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 700 }}>
-            группам:
+          Статусы помещений по{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.primary.main, fontWeight: 700 }}
+          >
+            торговым центрам:
           </Box>
         </Typography>
         <Stack
@@ -482,15 +490,18 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
         <Typography
           variant="h4"
           sx={{
-            color: deepPurple[500],
+            color: palette.secondary.main,
             textAlign: "center",
             pb: 2,
             mt: "24px",
           }}
         >
           Статусы участков по{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 700 }}>
-            подгруппам:
+          <Box
+            component="span"
+            sx={{ color: palette.primary.main, fontWeight: 700 }}
+          >
+            этажам:
           </Box>
         </Typography>
         <Stack
@@ -509,14 +520,17 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
         <Typography
           variant="h4"
           sx={{
-            color: deepPurple[500],
+            color: palette.secondary.main,
             textAlign: "center",
             pb: 2,
             mt: "24px",
           }}
         >
-          Текущие статусы участков по{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 700 }}>
+          Текущие статусы помещений по{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.primary.main, fontWeight: 700 }}
+          >
             группам событий:
           </Box>
         </Typography>
@@ -536,14 +550,17 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
         <Typography
           variant="h4"
           sx={{
-            color: deepPurple[500],
+            color: palette.secondary.main,
             textAlign: "center",
             pb: 2,
             mt: "24px",
           }}
         >
-          Текущие статусы участков по{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 700 }}>
+          Текущие статусы помещений по{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.primary.main, fontWeight: 700 }}
+          >
             событиям:
           </Box>
         </Typography>
@@ -563,14 +580,17 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
         <Typography
           variant="h4"
           sx={{
-            color: deepPurple[500],
+            color: palette.secondary.main,
             textAlign: "center",
             pb: 2,
             mt: "24px",
           }}
         >
-          История обработки участков по{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 700 }}>
+          История аренды помещений по{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.primary.main, fontWeight: 700 }}
+          >
             группам событий:
           </Box>
         </Typography>
@@ -590,14 +610,17 @@ const Statistic = ({ onOpenModalWindow, onCloseModalWindow }) => {
         <Typography
           variant="h4"
           sx={{
-            color: deepPurple[500],
+            color: palette.secondary.main,
             textAlign: "center",
             pb: 2,
             mt: "24px",
           }}
         >
-          История обработки участков по{" "}
-          <Box component="span" sx={{ color: orange[700], fontWeight: 700 }}>
+          История аренды помещений по{" "}
+          <Box
+            component="span"
+            sx={{ color: palette.primary.main, fontWeight: 700 }}
+          >
             событиям:
           </Box>
         </Typography>

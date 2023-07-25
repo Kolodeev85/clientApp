@@ -7,15 +7,16 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
+  useTheme,
 } from "@mui/material";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ListIcon from "@mui/icons-material/List";
 import { useStyles } from "../../style/useStyle";
-import { deepPurple } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
 const TeamBox = ({ selectedIndex, handleListItemClick }) => {
   const { classes } = useStyles();
+  const { palette } = useTheme();
 
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ const TeamBox = ({ selectedIndex, handleListItemClick }) => {
       <AccordionSummary>
         <GroupsIcon sx={{ mt: "5px", mr: "10px" }} />
         <Typography sx={{ fontSize: "24px", fontWeight: "600" }}>
-          Возвещатели
+          Арендаторы
         </Typography>
       </AccordionSummary>
       <AccordionSummary>
@@ -39,9 +40,9 @@ const TeamBox = ({ selectedIndex, handleListItemClick }) => {
               }}
             >
               <ListItemIcon>
-                <ListIcon sx={{ color: `${deepPurple[500]}` }} />
+                <ListIcon sx={{ color: palette.primary.main }} />
               </ListItemIcon>
-              <ListItemText primary="Возвещатели" />
+              <ListItemText primary="Арендаторы" />
             </ListItemButton>
           </List>
         </AccordionDetails>

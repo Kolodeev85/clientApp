@@ -19,7 +19,7 @@ const HeaderCreateParticipant = () => {
           sx={{ p: 2 }}
           startIcon={!isMobile ? <AddIcon /> : null}
         >
-          {!isMobile ? "Добавить возвещателя" : <AddIcon />}
+          {!isMobile ? "Добавить арендатора" : <AddIcon />}
         </Button>
       </Stack>
     </Stack>

@@ -11,7 +11,7 @@ import {
 
 const AllAreasBySubEventBar = ({ data }) => {
   const renameData = data.map((item) => {
-    return { ...item, участки: item.areas, areas: undefined };
+    return { ...item, помещения: item.areas, areas: undefined };
   });
   return (
     <ResponsiveContainer width="100%" height={300}>
@@ -28,7 +28,7 @@ const AllAreasBySubEventBar = ({ data }) => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="участки" stackId="a" fill="#673ab7" />
+        <Bar dataKey="помещения" stackId="a" fill="#fbc02d" />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -36,7 +36,7 @@ const ItemAreaPanel = (props) => {
   const { classes } = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { breakpoints } = useTheme();
+  const { breakpoints, palette } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down(1500));
   const isMobileBtn = useMediaQuery(breakpoints.down(850));
   const isMobilePadding = useMediaQuery(breakpoints.down(500));
@@ -99,16 +99,16 @@ const ItemAreaPanel = (props) => {
         }
       );
       if (responseArea.status === 200) {
-        enqueueSnackbar("Участок активирован успешно", {
+        enqueueSnackbar("Помещение вновь активно!", {
           variant: "success",
         });
       } else {
-        enqueueSnackbar("Произошла ошибка при активации участка", {
+        enqueueSnackbar("Произошла ошибка при активации помещения!", {
           variant: "error",
         });
       }
     } catch (e) {
-      enqueueSnackbar("Произошла ошибка", {
+      enqueueSnackbar("Произошла ошибка!", {
         variant: "error",
       });
     }
@@ -146,16 +146,19 @@ const ItemAreaPanel = (props) => {
         }
       );
       if (response.status === 200) {
-        enqueueSnackbar("Данные обновлены успешно", {
+        enqueueSnackbar("Данные обновлены успешно!", {
           variant: "success",
         });
       } else {
-        enqueueSnackbar("Произошла ошибка при обновлении данных участка", {
-          variant: "error",
-        });
+        enqueueSnackbar(
+          "Произошла ошибка при обновлении данных об помещении!",
+          {
+            variant: "error",
+          }
+        );
       }
     } catch (e) {
-      enqueueSnackbar("Произошла ошибка при обновлении данных участка", {
+      enqueueSnackbar("Произошла ошибка при обновлении данных об помещении!", {
         variant: "error",
       });
     }
@@ -208,15 +211,15 @@ const ItemAreaPanel = (props) => {
       break;
     case "active":
       className = classes.badgeBusy;
-      statusNames = "Активные";
+      statusNames = "Сданные";
       break;
     case "unactive":
       className = classes.badgeInactive;
-      statusNames = "Неактивные";
+      statusNames = "Недоступные";
       break;
     case "holded":
       className = classes.badgeDetainees;
-      statusNames = "Задержанные";
+      statusNames = "Оконченные";
       break;
     default:
       className = classes.badgeFree;
@@ -234,8 +237,8 @@ const ItemAreaPanel = (props) => {
           className={classes.alertContent}
         >
           <Alert variant="outlined" severity="error">
-            Внимание! Участкок будет удален на сервере без возможности
-            восстановления. Вы уверены?
+            Внимание! Помещение и связаная с ним история будут удалены с сервера
+            без возможности восстановления. Вы уверены?
           </Alert>
           <Stack direction="row">
             <Button
@@ -295,11 +298,11 @@ const ItemAreaPanel = (props) => {
                     sx={{
                       fontWeight: "550",
                       fontSize: "35px",
-                      color: `${deepPurple[500]}`,
+                      color: `${palette.secondary.main}`,
                       pt: 1,
                     }}
                   >
-                    {number ? `Участок ${number}` : null}
+                    {number ? `Помещение: ${number}` : null}
                   </Typography>
                   <IconButton
                     sx={{ height: "40px" }}
@@ -311,7 +314,7 @@ const ItemAreaPanel = (props) => {
                   </IconButton>
                 </Stack>
                 <Typography sx={{ fontSize: "12px", pb: "5px" }}>
-                  {`${group?.name ? group?.name : "Группа не присвоена"}${
+                  {`${group?.name ? group?.name : "Нет торгового центра"}${
                     subgroup?.name ? ` (${subgroup?.name})` : ""
                   }`}
                 </Typography>
@@ -320,7 +323,7 @@ const ItemAreaPanel = (props) => {
                   sx={{
                     fontWeight: "400",
                     fontSize: "14px",
-                    p: "2px 5px 0px 5px",
+                    p: "8px 13px 8px 10px",
                   }}
                   className={className}
                 >
@@ -343,13 +346,13 @@ const ItemAreaPanel = (props) => {
                     <Typography sx={{ fontWeight: 600, pb: 1, fontSize: 20 }}>
                       Информация:
                     </Typography>
-                    {info ? info : "Нет информации об участке"}
+                    {info ? info : "Нет информации об помещении"}
                   </Box>
                   <Box>
                     <Typography sx={{ fontWeight: 600, pb: 1, fontSize: 20 }}>
                       Описание:
                     </Typography>
-                    {description ? description : "Нет описания участка"}
+                    {description ? description : "Нет описания помещения"}
                   </Box>
                   {disabledInput ? (
                     <>
@@ -361,6 +364,7 @@ const ItemAreaPanel = (props) => {
                         multiline
                         rows={2}
                         sx={{ width: "90%", pb: 2 }}
+                        color="secondary"
                       ></TextField>
                       <TextField
                         name="description"
@@ -370,6 +374,7 @@ const ItemAreaPanel = (props) => {
                         multiline
                         rows={2}
                         sx={{ width: "90%", pb: 2 }}
+                        color="secondary"
                       ></TextField>
                     </>
                   ) : null}
@@ -390,7 +395,7 @@ const ItemAreaPanel = (props) => {
                         statusName === "holded"
                       }
                     >
-                      Выдать
+                      Аренда
                     </Button>
                     <Button
                       onClick={() => navigate("/area-return")}
@@ -400,7 +405,7 @@ const ItemAreaPanel = (props) => {
                         statusName === "free" || statusName === "unactive"
                       }
                     >
-                      Сдать
+                      Завершить
                     </Button>
                   </Stack>
                   <Stack direction="row">
@@ -443,7 +448,7 @@ const ItemAreaPanel = (props) => {
               variant="h2"
               sx={{
                 fontWeight: "550",
-                color: "(0, 0, 0, 0.87)",
+                color: palette.secondary.main,
                 fontSize: "25px",
                 pt: 4,
                 pl: 6,
@@ -455,27 +460,29 @@ const ItemAreaPanel = (props) => {
             <TableContainer sx={{ maxHeight: "400px", overflow: "auto" }}>
               <Table>
                 <TableHead>
-                  <TableRow sx={{ borderTop: `1px solid ${deepPurple[500]}` }}>
+                  <TableRow
+                    sx={{ borderTop: `1px solid ${palette.primary.main}` }}
+                  >
                     <TableCell
                       className={classes.tableCell}
                       sx={{
                         pl: 4,
-                        borderBottom: `1px solid ${deepPurple[500]}`,
+                        borderBottom: `1px solid ${palette.primary.main}`,
                         width: "25%",
                       }}
                     >
-                      Даты обработки:
+                      Даты аренды:
                     </TableCell>
                     <TableCell
                       className={classes.tableCell}
-                      sx={{ borderBottom: `1px solid ${deepPurple[500]}` }}
+                      sx={{ borderBottom: `1px solid ${palette.primary.main}` }}
                     >
-                      Возвещатель:
+                      Арендатор:
                     </TableCell>
                     <TableCell
                       className={classes.tableCell}
                       sx={{
-                        borderBottom: `1px solid ${deepPurple[500]}`,
+                        borderBottom: `1px solid ${palette.primary.main}`,
                         width: "10%",
                       }}
                     >
@@ -483,7 +490,7 @@ const ItemAreaPanel = (props) => {
                     </TableCell>
                     <TableCell
                       className={classes.tableCell}
-                      sx={{ borderBottom: `1px solid ${deepPurple[500]}` }}
+                      sx={{ borderBottom: `1px solid ${palette.primary.main}` }}
                     >
                       Событие:
                     </TableCell>
@@ -491,7 +498,7 @@ const ItemAreaPanel = (props) => {
                       className={classes.tableCell}
                       sx={{
                         width: "30%",
-                        borderBottom: `1px solid ${deepPurple[500]}`,
+                        borderBottom: `1px solid ${palette.primary.main}`,
                       }}
                     >
                       Примечания:
